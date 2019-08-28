@@ -1,0 +1,23 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.6.3
+services:
+  - postgresql
+before_install:
+  - gem update --system
+  - gem install bundler
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
+script:
+  - bundle exec rails webpacker:compile
+  - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec rails test
+deploy:
+  provider: heroku
+  api_key:
+    secure: hNpTNtUpqjnGNaZXz+T65xe+gJRQkHqEKiyCsJh+2RGnWk6tx+eXsOez0LxinfkqmUFPJ/nN8wYnmxVELbjiIQi5YdDWgRb3yUZrAbvqwQbPm6Udia7TnytcXBJ7WojP2vuBrCOIcolET/EZXxNokRzgQUMNGicYZgYztPDiV5gJsd+N7YG/8Kt4z7WNBYLvK79Z8qbCqbCk9fZztB9y9L8lMq9pjYEo0KaJ9IpnwqoMsSmSAo3pGEkT7SIuiwUPelBoUyV4LpZy44J4i89Ei4yR9N0yJnLaQL7KU8Ck5pRjGVPMCvtI86PbeWW23qKr2d9ScFz2Q7iaNdht76xw84DaKZfRlU26WlTAv0gBDRWMljYHoaORmSGdv+ESPRqZ518+HoUL+qbE897Um+9jRY3NbZwa0g9/t2pvSkTfhwpb4MRfkOYGkRoL6oA3Ksd6kSJX0bsoAPiOj8toi4vqmV/PAWqVwKJCX+AMOvjavGDlkiVdUU+OR3ueiMR+Ld+be3NqSy4yGde3ebxuF9LgnyDFuS3coM2dZvxkdJxHN9GGx3iWAfT/i8G03JZni7cZiOfZDevGQ5IO8y6TLfvkwxsZH6Fwcq56/VwgTTQs5kx3RjppVtoszO6H3yY5YOf+UEsGd92S++0+erGVk5i6KSZ/631vclpzYlDfjbd+VbE=
+  app: hocq2
+  on:
+    repo: BlazingBBQ/hocq2
