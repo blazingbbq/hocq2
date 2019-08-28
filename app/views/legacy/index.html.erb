@@ -190,54 +190,54 @@
 </head>
 
 <body onload="onload()">
-  <div id = "wrapper">
-    <div id = "header">
+  <div id="wrapper">
+    <div id="header">
       <p>Parliament of Canada</p>
     </div>
-    <div id = "top_bar">
-      <div id = "logo">
-        <img src = "https://www.ourcommons.ca/CommonElements/Images/ce-hoc-emblem-e.png" width = "150"/>
+    <div id="top_bar">
+      <div id="logo">
+        <img src="https://www.ourcommons.ca/CommonElements/Images/ce-hoc-emblem-e.png" width="150"/>
       </div>
-      <div id = "back_to_menu_button" class = "menu_button">
+      <div id="back_to_menu_button" class="menu_button">
         <p>Home</p>
       </div>
-      <div id = "multiple_choice_button" class = "menu_button">
+      <div id="multiple_choice_button" class="menu_button">
         <p>Play Multiple Choice</p>
       </div>
-      <div id = "realistic_challenge_button" class = "menu_button">
+      <div id="realistic_challenge_button" class="menu_button">
         <p>Play Reaslistic Challenge</p>
       </div>
-      <div id = "about_button" class = "menu_button">
+      <div id="about_button" class="menu_button">
         <p>About Us</p>
       </div>
-      <div id = "contact_button" class = "menu_button">
+      <div id="contact_button" class="menu_button">
         <p>Contact Us</p>
       </div>
     </div>
     
-    <div id = "game_screen">
-      <div id = "mp_image_container"> 
-        <img src = "" alt = "" id = "mp_image" width = "201" height = "325" />
+    <div id="game_screen">
+      <div id="mp_image_container"> 
+        <img src="" alt="" id="mp_image" width="201" height="325" />
       </div>
-      <div id = "score_container">
-        <p id = "score_correct" class = "score_element">Correct: 0</p>
-        <p id = "score_incorrect" class = "score_element">Incorrect: 0</p>
-        <p id = "score_skipped" class = "score_element">Skipped: 0</p>
+      <div id="score_container">
+        <p id="score_correct" class="score_element">Correct: 0</p>
+        <p id="score_incorrect" class="score_element">Incorrect: 0</p>
+        <p id="score_skipped" class="score_element">Skipped: 0</p>
       </div>
-      <form action="javascript:handleClick()">
-        <input type = "text" placeholder = "Mp Name" id = "mp_name" /><br/>
-        <input type = "submit" value = "CPC" id = "party_cpc" onclick="cpcHandle()" />
-        <input type = "submit" value = "LIB" id = "party_lib" onclick="libHandle()" />
-        <input type = "submit" value = "NDP" id = "party_ndp" onclick="ndpHandle()" />
-        <input type = "submit" value = "IND" id = "party_ind" onclick="indHandle()" />
+      <form action="javascript:handleClick()" autocomplete="off">
+        <input type="text" placeholder="Mp Name" id="mp_name" /><br/>
+        <input type="submit" value="CPC" id="party_cpc" onclick="cpcHandle()" />
+        <input type="submit" value="LIB" id="party_lib" onclick="libHandle()" />
+        <input type="submit" value="NDP" id="party_ndp" onclick="ndpHandle()" />
+        <input type="submit" value="IND" id="party_ind" onclick="indHandle()" />
       </form>
-      <form action = "javascript:handleClick()">
-        <input type = "submit" value = "Skip" id = "skip_button" onclick = "skipHandle()" />
+      <form action="javascript:handleClick()">
+        <input type="submit" value="Skip" id="skip_button" onclick="skipHandle()" />
       </form>
     </div>
     
-    <div id = "footer">
-      <div id = "copy_right"> 
+    <div id="footer">
+      <div id="copy_right"> 
         <p>Created by Simon Cousineau</p>
       </div>
     </div>
