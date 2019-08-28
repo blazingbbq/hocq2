@@ -1,9 +1,10 @@
-# README
+# HOCQ2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.com/BlazingBBQ/hocq2.svg?branch=master)](https://travis-ci.com/BlazingBBQ/hocq2)
 
-Things you may want to cover:
+Second version of the House of Commons MP Quiz game.
+
+### TODO (recommended by Rails CLI):
 
 * Ruby version
 
