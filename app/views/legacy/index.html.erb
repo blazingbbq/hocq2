@@ -1,0 +1,246 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Play Reaslistic Challenge!</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <script>
+    // Game resources 
+    var mpIds = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", "145", "146", "147", "148", "149", "150", "151", "152", "153", "154", "155", "156", "157", "158", "159", "160", "161", "162", "163", "164", "165", "166", "167", "168", "169", "170", "171", "172", "173", "174", "175", "176", "177", "178", "179", "180", "181", "182", "183", "184", "185", "186", "187", "188", "189", "190", "191", "192", "193", "194", "195", "196", "197", "198", "199", "200", "201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218", "219", "220", "221", "222", "223", "224", "225", "226", "227", "228", "229", "230", "231", "232", "233", "234", "235", "236", "237", "238", "239", "240", "241", "242", "243", "244", "245", "246", "247", "248", "249", "250", "251", "252", "253", "254", "255", "256", "257", "258", "259", "260", "261", "262", "263", "264", "265", "266", "267", "268", "269", "270", "271", "272", "273", "274", "275", "276", "277", "278", "279", "280", "281", "282", "283", "284", "285", "286", "287", "288", "289", "290", "291", "292", "293", "294", "295", "296", "297", "298", "299", "300", "301", "302", "303", "304", "305", "306", "307", "308", "309", "310", "311", "312", "313", "314", "315", "316", "317", "318", "319", "320", "321", "322", "323", "324", "325", "326", "327", "328", "329", "330", "331", "332", "333", "334", "335", "336", "337"]
+    var mpNames = ["Aboultaif", "Albas", "Albrecht", "Aldag", "Alghabra", "Alleslev", "Allison", "Ambrose", "Amos", "Anandasangaree", "Anderson", "Angus", "Arnold", "Arseneault", "Arya", "Ashton", "Aubin", "Ayoub", "Badawey", "Bagnell", "Bains", "Barlow", "Barsalou-Duval", "Baylis", "Beaulieu", "Beech", "Bennett", "Benson", "Benzen", "Bergen", "Bernier", "Berthold", "Bezan", "Bibeau", "Bittle", "Blaikie", "Blair", "Rachel Blaney", "Steven Blaney", "Block", "Boissonnault", "Bossio", "Boucher", "Boudrias", "Boulerice", "Boutin-Sweet", "Brassard", "Bratina", "Breton", "Brison", "Brosseau", "Brown", "Caesar-Chavannes", "Calkins", "Cannings", "Caron", "Carr", "Carrie", "Bill Casey", "Sean Casey", "Chagger", "Champagne", "Chan", "Chen", "Chong", "Choquette", "Christopherson", "Clarke", "Clement", "Cooper", "Cormier", "Cullen", "Cuzner", "Dabrusin", "Damoff", "Davies", "DeCourcey", "Deltell", "Dhaliwal", "Dhillon", "Di Iorio", "Diotte", "Doherty", "Donnelly", "Dreeshen", "Drouin", "Dubé", "Dubourg", "Duclos", "Duguid", "Kirsty Duncan", "Linda Duncan", "Dusseault", "Duvall", "Dzerowicz", "Easter", "Eglinski", "Ehsassi", "El-Khoury", "Ellis", "Erskine-Smith", "Eyking", "Eyolfson", "Falk", "Fast", "Fergus", "Fillmore", "Finley", "Finnigan", "Fisher", "Fonseca", "Foote", "Fortier", "Fortin", "Fragiskatos", "Colin Fraser", "Sean Fraser", "Freeland", "Fry", "Fuhr", "Gallant", "Garneau", "Garrison", "Généreux", "Genuis", "Gerretsen", "Gill", "Gladu", "Godin", "Goldsmith-Jones", "Goodale", "Gould", "Gourde", "Graham", "Grewal", "Hajdu", "Hardcastle", "Harder", "Hardie", "Harvey", "Hehr", "Hoback", "Holland", "Housefather", "Hughes", "Hussen", "Hutchings", "Iacono", "Jeneroux", "Johns", "Jolibois", "Joly", "Jones", "Jordan", "Jowhari", "Julian", "Kang", "Kelly", "Kent", "Khalid", "Khera", "Kitchen", "Kmiec", "Kusie", "Kwan", "Lake", "Lambropoulus", "Lametti", "Lamoureux", "Lapointe", "Guy Lauzon", "Stéphane Lauzon", "Laverdière", "Lebel", "Leblanc", "Lebouthillier", "Lefebvre", "Leitch", "Lemieux", "Leslie", "Levitt", "Liepert", "Lightbound", "Lobb", "Lockhart", "Long", "Longfield", "Ludwig", "Lukiwski", "Lawrence MacAulay", "MacGregor", "Mackenzie", "Steven MacKinnon", "Maguire", "Malcolmson", "Maloney", "Marcil", "Brian Masse", "Rémi Massé", "Mathyssen", "Brian May", "Elizabeth May", "Kelly McCauley", "McColeman", "McCrimmon", "McDonald", "McGuinty", "McKay", "McKenna", "Ron McKinnon", "Cathy McLeod", "Michael McLeod", "Mendes", "Mendicino", "Mihychuk", "Larry Miller", "Marc Miller", "Monsef", "Moore", "Morneau", "Morrissey", "Motz", "Mulcair", "Murray", "Nantel", "Nassif", "Nater", "Nault", "NG", "Nicholson", "Nuttall", "Obhrai", "O'Connell", "Oliphant", "Oliver", "O'Regan", "O’Toole", "Ouellette", "Paradis", "Paul-Hus", "Pauzé", "Peschisolido", "Peterson", "Petitpas Taylor", "Philpott", "Picard", "Plamondon", "Poilievre", "Poissant", "Quach", "Qualtrough", "Raitt", "Ramsey", "Rankin", "Ratansi", "Rayes", "Regan", "Reid", "Rempel", "Richards", "Rioux", "Ritz", "Robillard", "Rodriguez", "Romanado", "Rota", "Rudd", "Ruimy", "Rusnak", "Saganash", "Sahota", "Saini", "Sajjan", "Samson", "Sangha", "Sansoucy", "Sarai", "Saroya", "Scarpaleggia", "Scheer", "Schiefke", "Schmale", "Schulte", "Serré", "Sgro", "Shanahan", "Sheehan", "Shields", "Shipley", "Jati Sidhu", "Sonia Sidhu", "Sikand", "Simms", "Sohi", "Sopuck", "Sorbara", "Sorenson", "Spengemann", "Stanton", "Ste-Marie", "Stetski", "Stewart", "Strahl", "Stubbs", "Sweet", "Tabbara", "Tan", "Tassi", "Thériault", "Tilson", "Tootoo", "Trost", "Trudeau", "Trudel", "Vandal", "Vandenbeld", "Van Kesteren", "Van Loan", "Vaughan", "Vecchio", "Viersen", "Virani", "Wagantall", "Warawa", "Warkentin", "Watts", "Waugh", "Webber", "Weir", "Whalen", "Wilkinson", "Wilson-Raybould", "Wong", "Wrzesnewskyj", "Young", "Yurdiga", "Zahid", "Zimmer"]
+    var mpParties = ["CPC", "CPC", "CPC", "LIB", "LIB", "LIB", "CPC", "CPC", "LIB", "LIB", "CPC", "NDP", "CPC", "LIB", "LIB", "NDP", "NDP", "LIB", "LIB", "LIB", "LIB", "CPC", "IND", "LIB", "IND", "LIB", "LIB", "NDP", "CPC", "CPC", "CPC", "CPC", "CPC", "LIB", "LIB", "NDP", "LIB", "NDP", "CPC", "CPC", "LIB", "LIB", "CPC", "IND", "NDP", "NDP", "CPC", "LIB", "LIB", "LIB", "NDP", "CPC", "LIB", "CPC", "NDP", "NDP", "LIB", "CPC", "LIB", "LIB", "LIB", "LIB", "LIB", "LIB", "CPC", "NDP", "NDP", "CPC", "CPC", "CPC", "LIB", "NDP", "LIB", "LIB", "LIB", "NDP", "LIB", "CPC", "LIB", "LIB", "LIB", "CPC", "CPC", "NDP", "CPC", "LIB", "NDP", "LIB", "LIB", "LIB", "LIB", "NDP", "NDP", "NDP", "LIB", "LIB", "CPC", "LIB", "LIB", "LIB", "LIB", "LIB", "LIB", "CPC", "CPC", "LIB", "LIB", "CPC", "LIB", "LIB", "LIB", "LIB", "LIB", "IND", "LIB", "LIB", "LIB", "LIB", "LIB", "LIB", "CPC", "LIB", "NDP", "CPC", "CPC", "LIB", "IND", "CPC", "CPC", "LIB", "LIB", "LIB", "CPC", "LIB", "LIB", "LIB", "NDP", "CPC", "LIB", "LIB", "LIB", "CPC", "LIB", "LIB", "NDP", "LIB", "LIB", "LIB", "CPC", "NDP", "NDP", "LIB", "LIB", "LIB", "LIB", "NDP", "LIB", "CPC", "CPC", "LIB", "LIB", "CPC", "CPC", "CPC", "NDP", "CPC", "LIB", "LIB", "LIB", "LIB", "CPC", "LIB", "NDP", "CPC", "LIB", "LIB", "LIB", "CPC", "LIB", "LIB", "LIB", "CPC", "LIB", "CPC", "LIB", "LIB", "LIB", "LIB", "CPC", "LIB", "NDP", "CPC", "LIB", "CPC", "NDP", "LIB", "IND", "NDP", "LIB", "NDP", "LIB", "IND", "CPC", "CPC", "LIB", "LIB", "LIB", "LIB", "LIB", "LIB", "CPC", "LIB", "LIB", "LIB", "LIB", "CPC", "LIB", "LIB", "NDP", "LIB", "LIB", "CPC", "NDP", "LIB", "NDP", "LIB", "CPC", "LIB", "LIB", "CPC", "CPC", "CPC", "LIB", "LIB", "LIB", "LIB", "CPC", "LIB", "LIB", "CPC", "IND", "LIB", "LIB", "LIB", "LIB", "LIB", "IND", "CPC", "LIB", "NDP", "LIB", "CPC", "NDP", "NDP", "LIB", "CPC", "LIB", "CPC", "CPC", "CPC", "LIB", "CPC", "LIB", "LIB", "LIB", "LIB", "LIB", "LIB", "LIB", "NDP", "LIB", "LIB", "LIB", "LIB", "LIB", "NDP", "LIB", "CPC", "LIB", "CPC", "LIB", "CPC", "LIB", "LIB", "LIB", "LIB", "LIB", "CPC", "CPC", "LIB", "LIB", "LIB", "LIB", "LIB", "CPC", "LIB", "CPC", "LIB", "CPC", "IND", "NDP", "NDP", "CPC", "CPC", "CPC", "LIB", "LIB", "LIB", "IND", "CPC", "IND", "CPC", "LIB", "NDP", "LIB", "LIB", "CPC", "CPC", "LIB", "CPC", "CPC", "LIB", "CPC", "CPC", "CPC", "CPC", "CPC", "CPC", "NDP", "LIB", "LIB", "LIB", "CPC", "LIB", "LIB", "CPC", "LIB", "CPC"]
+    var mpImages = ["https://www.dropbox.com/s/62155apqu5kt6g0/0.jpg?raw=1", "https://www.dropbox.com/s/okx82orfrl6ggjm/1.jpg?raw=1", "https://www.dropbox.com/s/k7fq9xdq2j0lh0y/2.jpg?raw=1", "https://www.dropbox.com/s/bd35vaatvzzkerq/3.jpg?raw=1", "https://www.dropbox.com/s/ryvv1p6lc6cmk5e/4.jpg?raw=1", "https://www.dropbox.com/s/wcpbu1zhq9wbhqg/5.jpg?raw=1", "https://www.dropbox.com/s/5czizmq7kgm3aos/6.jpg?raw=1", "https://www.dropbox.com/s/4i18hi3pfibuv42/7.jpg?raw=1", "https://www.dropbox.com/s/v6s6pjnfk3xt2zp/8.jpg?raw=1", "https://www.dropbox.com/s/ojc1sqrz7nyjkv8/9.jpg?raw=1", "https://www.dropbox.com/s/igswb6bzipdxzlk/10.jpg?raw=1", "https://www.dropbox.com/s/mcua5pd8nxrn2as/11.jpg?raw=1", "https://www.dropbox.com/s/0nwk1q0wx4d3m5t/12.jpg?raw=1", "https://www.dropbox.com/s/ykzkfjvcm4qqy9j/13.jpg?raw=1", "https://www.dropbox.com/s/ig3dai23pl0bg81/14.jpg?raw=1", "https://www.dropbox.com/s/vetrvxoqqueucyg/15.jpg?raw=1", "https://www.dropbox.com/s/3us3qy324uhlc36/16.jpg?raw=1", "https://www.dropbox.com/s/nydpqkobogwcp7n/17.jpg?raw=1", "https://www.dropbox.com/s/p1h3qfyn96k64b0/18.jpg?raw=1", "https://www.dropbox.com/s/ddixkc7516he7o0/19.jpg?raw=1", "https://www.dropbox.com/s/1ftsl5agxthh1m2/20.jpg?raw=1", "https://www.dropbox.com/s/mp0ybcgrsdamy52/21.jpg?raw=1", "https://www.dropbox.com/s/fsc2dbvuiaim4mz/22.jpg?raw=1", "https://www.dropbox.com/s/13wrehfsn5lro9h/23.jpg?raw=1", "https://www.dropbox.com/s/ddixz6lmv5hhd2p/24.jpg?raw=1", "https://www.dropbox.com/s/ylh9ptzau6vluvf/25.jpg?raw=1", "https://www.dropbox.com/s/hcqpd613njn2sph/26.jpg?raw=1", "https://www.dropbox.com/s/34tly96hooel28e/27.jpg?raw=1", "https://www.dropbox.com/s/7ne05o89jilci24/28.jpg?raw=1", "https://www.dropbox.com/s/vgxf1uyno7eay2n/29.jpg?raw=1", "https://www.dropbox.com/s/4s55z7qe5y57xl6/30.jpg?raw=1", "https://www.dropbox.com/s/aktw3aql1iaqhl2/31.jpg?raw=1", "https://www.dropbox.com/s/csffnref1pvxwen/32.jpg?raw=1", "https://www.dropbox.com/s/4xiihhukjosairu/33.jpg?raw=1", "https://www.dropbox.com/s/kmkbe6bbjfzjvdg/34.jpg?raw=1", "https://www.dropbox.com/s/mto9gdgs4whvfkp/35.jpg?raw=1", "https://www.dropbox.com/s/wnw3e5zzwtkru67/36.jpg?raw=1", "https://www.dropbox.com/s/iu8cu0xsyzvkiz3/37.jpg?raw=1", "https://www.dropbox.com/s/cmikwk80rphl8jn/38.jpg?raw=1", "https://www.dropbox.com/s/lkmkusne0ndybkz/39.jpg?raw=1", "https://www.dropbox.com/s/d4q12h61ck3dn2o/40.jpg?raw=1", "https://www.dropbox.com/s/ypb44qn8i6vlvcr/41.jpg?raw=1", "https://www.dropbox.com/s/jjsw8swma9m3jdg/42.jpg?raw=1", "https://www.dropbox.com/s/2ozkyn7s98urny1/43.jpg?raw=1", "https://www.dropbox.com/s/fwvbyo6nnggfobg/44.jpg?raw=1", "https://www.dropbox.com/s/4vwkzf7p8vpzy0e/45.jpg?raw=1", "https://www.dropbox.com/s/83ahjoieyqp5lrj/46.jpg?raw=1", "https://www.dropbox.com/s/58hsctzwntyy9dn/47.jpg?raw=1", "https://www.dropbox.com/s/e277yvo5jsa4mjt/48.jpg?raw=1", "https://www.dropbox.com/s/9kayjy10lgcn8nr/49.jpg?raw=1", "https://www.dropbox.com/s/a2m32zy0isc6115/50.jpg?raw=1", "https://www.dropbox.com/s/9we2x55gpv5vd5p/51.jpg?raw=1", "https://www.dropbox.com/s/kzqjlk5fdl1upc3/52.jpg?raw=1", "https://www.dropbox.com/s/rgmob6vvhrd7sk7/53.jpg?raw=1", "https://www.dropbox.com/s/2s2uybrvh0dc6jt/54.jpg?raw=1", "https://www.dropbox.com/s/8md0sfvf4bbjzdg/55.jpg?raw=1", "https://www.dropbox.com/s/850py5m5cwyzg9z/56.jpg?raw=1", "https://www.dropbox.com/s/3ozg73dwu5giffu/57.jpg?raw=1", "https://www.dropbox.com/s/w7249bjkw1o5au8/58.jpg?raw=1", "https://www.dropbox.com/s/mi8o2s7rbbhamc2/59.jpg?raw=1", "https://www.dropbox.com/s/5yy7z0nlpoa9e05/60.jpg?raw=1", "https://www.dropbox.com/s/dtdsaucrl6sxqlf/61.jpg?raw=1", "https://www.dropbox.com/s/zmov6gv37vlszgm/62.jpg?raw=1", "https://www.dropbox.com/s/6fnfzn8wfysnreo/63.jpg?raw=1", "https://www.dropbox.com/s/p6bn21o5lsra6hk/64.jpg?raw=1", "https://www.dropbox.com/s/6t90a42fmsy89o9/65.jpg?raw=1", "https://www.dropbox.com/s/i1ow3y1rqt67okp/66.jpg?raw=1", "https://www.dropbox.com/s/zjwybhydu5wdaej/67.jpg?raw=1", "https://www.dropbox.com/s/g0hk0yb48ndrhl1/68.jpg?raw=1", "https://www.dropbox.com/s/jm515umbhpgrbz7/69.jpg?raw=1", "https://www.dropbox.com/s/g4ayu5n57585esc/70.jpg?raw=1", "https://www.dropbox.com/s/281o5tknjkj8b7u/71.jpg?raw=1", "https://www.dropbox.com/s/iiskln2izkqz702/72.jpg?raw=1", "https://www.dropbox.com/s/sn76cm0bg46m5rx/73.jpg?raw=1", "https://www.dropbox.com/s/2ojan7rrm8q294p/74.jpg?raw=1", "https://www.dropbox.com/s/v5nzmei7ifqed4a/75.jpg?raw=1", "https://www.dropbox.com/s/k11sa26k7riu2ec/76.jpg?raw=1", "https://www.dropbox.com/s/vkuufynjmmkatw4/77.jpg?raw=1", "https://www.dropbox.com/s/3hobzpc09qblasl/78.jpg?raw=1", "https://www.dropbox.com/s/k9fdgknxqnh27be/79.jpg?raw=1", "https://www.dropbox.com/s/lxe82gpxkdxvhpz/80.jpg?raw=1", "https://www.dropbox.com/s/sst3zzqhk7l4t4b/81.jpg?raw=1", "https://www.dropbox.com/s/ljgbljgxyqm39zn/82.jpg?raw=1", "https://www.dropbox.com/s/q8l7wqn3maxaakl/83.jpg?raw=1", "https://www.dropbox.com/s/19txuwd0t98z11r/84.jpg?raw=1", "https://www.dropbox.com/s/bhl1pmwwmsm03oq/85.jpg?raw=1", "https://www.dropbox.com/s/qx1wul5l9etgmmj/86.jpg?raw=1", "https://www.dropbox.com/s/ninibi5xhs08l89/87.jpg?raw=1", "https://www.dropbox.com/s/x6wvdw8g4g6qikg/88.jpg?raw=1", "https://www.dropbox.com/s/50s249vijckp77c/89.jpg?raw=1", "https://www.dropbox.com/s/fqnyh1kvvvyilvb/90.jpg?raw=1", "https://www.dropbox.com/s/8e9ld3emgaoqmo3/91.jpg?raw=1", "https://www.dropbox.com/s/yycyugxs6dw5pss/92.jpg?raw=1", "https://www.dropbox.com/s/fx91d4j2ilats2a/93.jpg?raw=1", "https://www.dropbox.com/s/t8ia5h7vse4mf9n/94.jpg?raw=1", "https://www.dropbox.com/s/3s13nxzcefeykmw/95.jpg?raw=1", "https://www.dropbox.com/s/s5epuamshjao9nw/96.jpg?raw=1", "https://www.dropbox.com/s/vm0vjxdw7rp9pzy/97.jpg?raw=1", "https://www.dropbox.com/s/kl29j0we1ijo8kp/98.jpg?raw=1", "https://www.dropbox.com/s/ayu63g85j5llezg/99.jpg?raw=1", "https://www.dropbox.com/s/uu9mkb8cjpfyokw/100.jpg?raw=1", "https://www.dropbox.com/s/zih5g9rw01qrim8/101.jpg?raw=1", "https://www.dropbox.com/s/tqpm49udi4v3sjl/102.jpg?raw=1", "https://www.dropbox.com/s/8udd3ys7gbskzv8/103.jpg?raw=1", "https://www.dropbox.com/s/vl6dp8glf65o3f4/104.jpg?raw=1", "https://www.dropbox.com/s/dzf9pa7yzs5ldxi/105.jpg?raw=1", "https://www.dropbox.com/s/aqewdof528lw5qs/106.jpg?raw=1", "https://www.dropbox.com/s/wiziz8xgdl64h2m/107.jpg?raw=1", "https://www.dropbox.com/s/hio25scsbehxouq/108.jpg?raw=1", "https://www.dropbox.com/s/gwyj0bqn5l6nuzo/109.jpg?raw=1", "https://www.dropbox.com/s/yz119rz4vueboxc/110.jpg?raw=1", "https://www.dropbox.com/s/czf3j6rv20hr8yz/111.jpg?raw=1", "https://www.dropbox.com/s/jllmdu4mtxpte4i/112.jpg?raw=1", "https://www.dropbox.com/s/0vzfqfp3s8725sk/113.jpg?raw=1", "https://www.dropbox.com/s/u1wxv82cr8pqcnk/114.jpg?raw=1", "https://www.dropbox.com/s/7xur9gv6z8koxob/115.jpg?raw=1", "https://www.dropbox.com/s/jfnd56r99xlp4w3/116.jpg?raw=1", "https://www.dropbox.com/s/k01bwwdyokqglj2/117.jpg?raw=1", "https://www.dropbox.com/s/g6na9yfjvcnkeuf/118.jpg?raw=1", "https://www.dropbox.com/s/zdar8vtpectbaan/119.jpg?raw=1", "https://www.dropbox.com/s/088tub0f8t3utx9/120.jpg?raw=1", "https://www.dropbox.com/s/ipquskf0b596h4n/121.jpg?raw=1", "https://www.dropbox.com/s/me5asza5whd04wo/122.jpg?raw=1", "https://www.dropbox.com/s/kd7w935zfyggdfm/123.jpg?raw=1", "https://www.dropbox.com/s/v8z38thl87kzbu1/124.jpg?raw=1", "https://www.dropbox.com/s/59xucw2qthfq1xt/125.jpg?raw=1", "https://www.dropbox.com/s/74auit839nhrh9h/126.jpg?raw=1", "https://www.dropbox.com/s/49tyb3d0e92gbgh/127.jpg?raw=1", "https://www.dropbox.com/s/a6c18atta3la44w/128.jpg?raw=1", "https://www.dropbox.com/s/w4wfdnxpgpmiht6/129.jpg?raw=1", "https://www.dropbox.com/s/43x73x53hpdurun/130.jpg?raw=1", "https://www.dropbox.com/s/rq63ywuhjji4lrd/131.jpg?raw=1", "https://www.dropbox.com/s/nle4118owlm8bpp/132.jpg?raw=1", "https://www.dropbox.com/s/6xk7tjpcvxbgw1c/133.jpg?raw=1", "https://www.dropbox.com/s/b6ss1fz246brijt/134.jpg?raw=1", "https://www.dropbox.com/s/8n97052pipg9jdo/135.jpg?raw=1", "https://www.dropbox.com/s/yfbgumsd5inzfl6/136.jpg?raw=1", "https://www.dropbox.com/s/aof3k83yk6hs5oy/137.jpg?raw=1", "https://www.dropbox.com/s/z892upf52ji6uro/138.jpg?raw=1", "https://www.dropbox.com/s/cqhkfw6nf5l2knj/139.jpg?raw=1", "https://www.dropbox.com/s/q2c9jiyjurxmcnc/140.jpg?raw=1", "https://www.dropbox.com/s/y7sdfpyojofcd8z/141.jpg?raw=1", "https://www.dropbox.com/s/t83md42jw26vduc/142.jpg?raw=1", "https://www.dropbox.com/s/d40nwrblzn8jgby/143.jpg?raw=1", "https://www.dropbox.com/s/qjnzp6yxchhngep/144.jpg?raw=1", "https://www.dropbox.com/s/kw2ensjbikcw7gu/145.jpg?raw=1", "https://www.dropbox.com/s/uuhadzgqssejdp3/146.jpg?raw=1", "https://www.dropbox.com/s/5khjr8wjv4lwmec/147.jpg?raw=1", "https://www.dropbox.com/s/kmc9k40m6280srb/148.jpg?raw=1", "https://www.dropbox.com/s/tbimktxgadbr1t0/149.jpg?raw=1", "https://www.dropbox.com/s/zxbyehm5j7tokn9/150.jpg?raw=1", "https://www.dropbox.com/s/d1dem8a6m12l0gs/151.jpg?raw=1", "https://www.dropbox.com/s/k1q70htchlmhjy8/152.jpg?raw=1", "https://www.dropbox.com/s/n4ivqqqt7pm22rl/153.jpg?raw=1", "https://www.dropbox.com/s/fb7wqjazy08mohl/154.jpg?raw=1", "https://www.dropbox.com/s/6q36mqvr7679wba/155.jpg?raw=1", "https://www.dropbox.com/s/yf0q1cce67zbr1x/156.jpg?raw=1", "https://www.dropbox.com/s/vut8mg9uh5j2jzl/157.jpg?raw=1", "https://www.dropbox.com/s/4w9chlmnjytyjdq/158.jpg?raw=1", "https://www.dropbox.com/s/del9jiluq24djo1/159.jpg?raw=1", "https://www.dropbox.com/s/8req1e1lzpnqonb/160.jpg?raw=1", "https://www.dropbox.com/s/lrp1qqqc92ys0ze/161.jpg?raw=1", "https://www.dropbox.com/s/gel6qc890rz2xby/162.jpg?raw=1", "https://www.dropbox.com/s/2nxz9go0j01i4cm/163.jpg?raw=1", "https://www.dropbox.com/s/5eux3akjewljttu/164.jpg?raw=1", "https://www.dropbox.com/s/14ru6gplfl7scdz/165.jpg?raw=1", "https://www.dropbox.com/s/xy0tummirg8wswp/166.jpg?raw=1", "https://www.dropbox.com/s/p1d4vrtye00hxsw/167.jpg?raw=1", "https://www.dropbox.com/s/64q0wibmbmuzqdr/168.jpg?raw=1", "https://www.dropbox.com/s/d5ule745rh06cmr/169.jpg?raw=1", "https://www.dropbox.com/s/lv9kvi1df9hkxu8/170.jpg?raw=1", "https://www.dropbox.com/s/kylllt2t0gy1g4q/171.jpg?raw=1", "https://www.dropbox.com/s/fjwx8ous1de9fo4/172.jpg?raw=1", "https://www.dropbox.com/s/tm3d62h35ibvsd4/173.jpg?raw=1", "https://www.dropbox.com/s/nxi1w394wgd4no8/174.jpg?raw=1", "https://www.dropbox.com/s/tjyoq9n9vkbvvci/175.jpg?raw=1", "https://www.dropbox.com/s/t6h7nv37a4br5zz/176.jpg?raw=1", "https://www.dropbox.com/s/jf7f97sphenuf7q/177.jpg?raw=1", "https://www.dropbox.com/s/67j9znpv0fp5jbl/178.jpg?raw=1", "https://www.dropbox.com/s/2qrjmubk8flync1/179.jpg?raw=1", "https://www.dropbox.com/s/90l24dk0fqqcx4p/180.jpg?raw=1", "https://www.dropbox.com/s/mo596dj8jgbtwl6/181.jpg?raw=1", "https://www.dropbox.com/s/jjx35qbymvn4qf3/182.jpg?raw=1", "https://www.dropbox.com/s/gjyg3sq5yyr5m1n/183.jpg?raw=1", "https://www.dropbox.com/s/7i45y6fiuoljrxh/184.jpg?raw=1", "https://www.dropbox.com/s/plkoid6uxh33rs0/185.jpg?raw=1", "https://www.dropbox.com/s/ayzoo0jqvfthkav/186.jpg?raw=1", "https://www.dropbox.com/s/8vl2d1408aqcf2k/187.jpg?raw=1", "https://www.dropbox.com/s/imaigm7t947olz1/188.jpg?raw=1", "https://www.dropbox.com/s/uc8bea90pvf34cr/189.jpg?raw=1", "https://www.dropbox.com/s/iix19f7yxl02uez/190.jpg?raw=1", "https://www.dropbox.com/s/4y7ugkpwatqxac9/191.jpg?raw=1", "https://www.dropbox.com/s/n1nk4lhpmo7mnaj/192.jpg?raw=1", "https://www.dropbox.com/s/se2n4s5tu7mq4pz/193.jpg?raw=1", "https://www.dropbox.com/s/3vnlxxqity6q4pf/194.jpg?raw=1", "https://www.dropbox.com/s/ssk7b1sz2y4h7g8/195.jpg?raw=1", "https://www.dropbox.com/s/mzmbyfhnojat5eq/196.jpg?raw=1", "https://www.dropbox.com/s/m8ipry76ov8uw07/197.jpg?raw=1", "https://www.dropbox.com/s/095njxwetd5fmlq/198.jpg?raw=1", "https://www.dropbox.com/s/s8hfyoxvajgqpen/199.jpg?raw=1", "https://www.dropbox.com/s/a66pwfh1ido97za/200.jpg?raw=1", "https://www.dropbox.com/s/wqg0ehgmauzvrm6/201.jpg?raw=1", "https://www.dropbox.com/s/jo0owcqblc3h1i6/202.jpg?raw=1", "https://www.dropbox.com/s/66o3ij8sj3qcqsr/203.jpg?raw=1", "https://www.dropbox.com/s/xdaptzsk61eto3m/204.jpg?raw=1", "https://www.dropbox.com/s/zpya12tiyj8hh5k/205.jpg?raw=1", "https://www.dropbox.com/s/owmmkk2rjejbg5z/206.jpg?raw=1", "https://www.dropbox.com/s/hn6ma1z2pvmxumg/207.jpg?raw=1", "https://www.dropbox.com/s/0u5j72jbykwn5bv/208.jpg?raw=1", "https://www.dropbox.com/s/wcirydggysdpyr2/209.jpg?raw=1", "https://www.dropbox.com/s/0zdphqcqb9s3vjy/210.jpg?raw=1", "https://www.dropbox.com/s/ypo5e12bqs1e8d2/211.jpg?raw=1", "https://www.dropbox.com/s/5j4wped3t58bbk6/212.jpg?raw=1", "https://www.dropbox.com/s/uzb2hmoc2s8upb4/213.jpg?raw=1", "https://www.dropbox.com/s/hr84pxtzihz97x9/214.jpg?raw=1", "https://www.dropbox.com/s/l7vu26k4zanxa2f/215.jpg?raw=1", "https://www.dropbox.com/s/79ny76nmlmhfrvw/216.jpg?raw=1", "https://www.dropbox.com/s/aysy20jtsylkroi/217.jpg?raw=1", "https://www.dropbox.com/s/v5nipt2and32d1z/218.jpg?raw=1", "https://www.dropbox.com/s/4qqdxv9un9xnv92/219.jpg?raw=1", "https://www.dropbox.com/s/fv2epj9r7khc258/220.jpg?raw=1", "https://www.dropbox.com/s/dunib3zsdbarlzh/221.jpg?raw=1", "https://www.dropbox.com/s/ut7pv3qgh4917az/222.jpg?raw=1", "https://www.dropbox.com/s/vdzo5acmxeoei0t/223.jpg?raw=1", "https://www.dropbox.com/s/9indtuut6wtmo70/224.jpg?raw=1", "https://www.dropbox.com/s/aa2nzedk6l7pc50/225.jpg?raw=1", "https://www.dropbox.com/s/9z09k6vnjiu0jig/226.jpg?raw=1", "https://www.dropbox.com/s/zm5i76e0tzom7uh/227.jpg?raw=1", "https://www.dropbox.com/s/4rmjqqaznrevgop/228.jpg?raw=1", "https://www.dropbox.com/s/rmwogb1ntbl7lfp/229.jpg?raw=1", "https://www.dropbox.com/s/4nz013ecg6njhbf/230.jpg?raw=1", "https://www.dropbox.com/s/u63026a53uj7p00/231.jpg?raw=1", "https://www.dropbox.com/s/jzh88xedp5i3oyn/232.jpg?raw=1", "https://www.dropbox.com/s/qtdkk64b3f3k5v7/233.jpg?raw=1", "https://www.dropbox.com/s/8e254441qum3xc8/234.jpg?raw=1", "https://www.dropbox.com/s/ol4d2ksaezv5okp/235.jpg?raw=1", "https://www.dropbox.com/s/wm3a0sxj7mt3j6o/236.jpg?raw=1", "https://www.dropbox.com/s/uwlh9pji3ty4lt2/237.jpg?raw=1", "https://www.dropbox.com/s/oxcv8jqhrc77gw0/238.jpg?raw=1", "https://www.dropbox.com/s/hkd3ra3kqxbzi4a/239.jpg?raw=1", "https://www.dropbox.com/s/zpubz08sne783r9/240.jpg?raw=1", "https://www.dropbox.com/s/0oo8ob6pdxl56s1/241.jpg?raw=1", "https://www.dropbox.com/s/znp2qeq31faou01/242.jpg?raw=1", "https://www.dropbox.com/s/3m6ciquy266nyl8/243.jpg?raw=1", "https://www.dropbox.com/s/fzg6v57ws8jucy1/244.jpg?raw=1", "https://www.dropbox.com/s/w6pjxdcyozyb1y7/245.jpg?raw=1", "https://www.dropbox.com/s/9up4dlz6mx48sw1/246.jpg?raw=1", "https://www.dropbox.com/s/tdyk4jq48huxieq/247.jpg?raw=1", "https://www.dropbox.com/s/o3wqte0j5uk45oh/248.jpg?raw=1", "https://www.dropbox.com/s/pbwhs6qqgow6tsd/249.jpg?raw=1", "https://www.dropbox.com/s/tbpode24ukhssmf/250.jpg?raw=1", "https://www.dropbox.com/s/uzpepdow83ftint/251.jpg?raw=1", "https://www.dropbox.com/s/jrmspo0ad3qkyi5/252.jpg?raw=1", "https://www.dropbox.com/s/imgb342l4j57wnt/253.jpg?raw=1", "https://www.dropbox.com/s/hprvmwqaao4dxt3/254.jpg?raw=1", "https://www.dropbox.com/s/vikk8y1lyul8rgo/255.jpg?raw=1", "https://www.dropbox.com/s/v8hnju1fk4ii22c/256.jpg?raw=1", "https://www.dropbox.com/s/u9fmxh4xgbfaomm/257.jpg?raw=1", "https://www.dropbox.com/s/21nau5cd3802ksu/258.jpg?raw=1", "https://www.dropbox.com/s/1ha2iyq5orvv4z0/259.jpg?raw=1", "https://www.dropbox.com/s/n5fxs7mytchkfog/260.jpg?raw=1", "https://www.dropbox.com/s/1f8p4z3zl5i6uk0/261.jpg?raw=1", "https://www.dropbox.com/s/qsmxqlaq1ytq4f6/262.jpg?raw=1", "https://www.dropbox.com/s/ld22rrvejegbkcs/263.jpg?raw=1", "https://www.dropbox.com/s/c7cx9l4wnoo9yjs/264.jpg?raw=1", "https://www.dropbox.com/s/md4wt1nyyb0gj83/265.jpg?raw=1", "https://www.dropbox.com/s/bwetkqjuvkceo18/266.jpg?raw=1", "https://www.dropbox.com/s/gv12vdq0xnpdhgj/267.jpg?raw=1", "https://www.dropbox.com/s/gkdpr1lbp52iy1s/268.jpg?raw=1", "https://www.dropbox.com/s/y99p330jnkpxufg/269.jpg?raw=1", "https://www.dropbox.com/s/euoykqybg1ca6h4/270.jpg?raw=1", "https://www.dropbox.com/s/ivek69sh3m6bcia/271.jpg?raw=1", "https://www.dropbox.com/s/m5e284qbgomh2bv/272.jpg?raw=1", "https://www.dropbox.com/s/siexjbsy3qji6lf/273.jpg?raw=1", "https://www.dropbox.com/s/qfezqmf5rxluaca/274.jpg?raw=1", "https://www.dropbox.com/s/fstg3b2vvtei4h4/275.jpg?raw=1", "https://www.dropbox.com/s/0zc0kfmavv37rqh/276.jpg?raw=1", "https://www.dropbox.com/s/2vc6fyixaizanch/277.jpg?raw=1", "https://www.dropbox.com/s/4jyganwyzuqs1oj/278.jpg?raw=1", "https://www.dropbox.com/s/6o03kcfvhaqzj2k/279.jpg?raw=1", "https://www.dropbox.com/s/tu567poydllappt/280.jpg?raw=1", "https://www.dropbox.com/s/xhgibunquo2772t/281.jpg?raw=1", "https://www.dropbox.com/s/ttd4g59ngq5xxl0/282.jpg?raw=1", "https://www.dropbox.com/s/htzmyd0k4ujf4h2/283.jpg?raw=1", "https://www.dropbox.com/s/wgik8xng0ytvms9/284.jpg?raw=1", "https://www.dropbox.com/s/6pgtbjrc7zth06t/285.jpg?raw=1", "https://www.dropbox.com/s/owcl1pw3zqteab7/286.jpg?raw=1", "https://www.dropbox.com/s/fuauahm24znwzen/287.jpg?raw=1", "https://www.dropbox.com/s/lswrchshzr2bye5/288.jpg?raw=1", "https://www.dropbox.com/s/gu50ok72idfamcw/289.jpg?raw=1", "https://www.dropbox.com/s/qlkd70eqhh94ndb/290.jpg?raw=1", "https://www.dropbox.com/s/4lz7urdwr6p7oow/291.jpg?raw=1", "https://www.dropbox.com/s/x3psoqfz1xewhqt/292.jpg?raw=1", "https://www.dropbox.com/s/tr7ubkemiic29ij/293.jpg?raw=1", "https://www.dropbox.com/s/tc8xscndvxky6aj/294.jpg?raw=1", "https://www.dropbox.com/s/2qpssgm6lwk621o/295.jpg?raw=1", "https://www.dropbox.com/s/5oywz6v13vnd1je/296.jpg?raw=1", "https://www.dropbox.com/s/zmuw0xfl5l0n0pc/297.jpg?raw=1", "https://www.dropbox.com/s/45s28yvd3g1anwj/298.jpg?raw=1", "https://www.dropbox.com/s/bensycbjw5hzp7a/299.jpg?raw=1", "https://www.dropbox.com/s/o4e1ae4c1lez3oz/300.jpg?raw=1", "https://www.dropbox.com/s/1uucc28q4dw38nw/301.jpg?raw=1", "https://www.dropbox.com/s/3pdg6lmkrt6l1b7/302.jpg?raw=1", "https://www.dropbox.com/s/cmbvif4qfjbo1hc/303.jpg?raw=1", "https://www.dropbox.com/s/la1adprghok160d/304.jpg?raw=1", "https://www.dropbox.com/s/um4as7ukgvf46rc/305.jpg?raw=1", "https://www.dropbox.com/s/3eszwszkeuw985q/306.jpg?raw=1", "https://www.dropbox.com/s/hotfpiuotslk5ci/307.jpg?raw=1", "https://www.dropbox.com/s/sr6tw7cw1o7uu87/308.jpg?raw=1", "https://www.dropbox.com/s/fbpsk1812mlsmq2/309.jpg?raw=1", "https://www.dropbox.com/s/a5j3jfhm9t8y2rr/310.jpg?raw=1", "https://www.dropbox.com/s/yoyusguwdk3r7oq/311.jpg?raw=1", "https://www.dropbox.com/s/epnaxa3he2pbqpb/312.jpg?raw=1", "https://www.dropbox.com/s/a28k9y3pih54uia/313.jpg?raw=1", "https://www.dropbox.com/s/iqcdddn1cp2qrq9/314.jpg?raw=1", "https://www.dropbox.com/s/r51lv1iip3g1dun/315.jpg?raw=1", "https://www.dropbox.com/s/j5e9wzvcad8iuet/316.jpg?raw=1", "https://www.dropbox.com/s/lwhytdoi39gomsb/317.jpg?raw=1", "https://www.dropbox.com/s/jerbkfhi6kq77j3/318.jpg?raw=1", "https://www.dropbox.com/s/80285ib2q0ohg73/319.jpg?raw=1", "https://www.dropbox.com/s/pl63dmpwqvashq9/320.jpg?raw=1", "https://www.dropbox.com/s/ibz6xsa6ntavtzi/321.jpg?raw=1", "https://www.dropbox.com/s/74u8hkety39wtz6/322.jpg?raw=1", "https://www.dropbox.com/s/t5naxuqles2kxa4/323.jpg?raw=1", "https://www.dropbox.com/s/l6mzhdns2b91d4r/324.jpg?raw=1", "https://www.dropbox.com/s/p7srl2ehpi1eafv/325.jpg?raw=1", "https://www.dropbox.com/s/038b7fbg0kd3w1l/326.jpg?raw=1", "https://www.dropbox.com/s/fg0aojs914p5foj/327.jpg?raw=1", "https://www.dropbox.com/s/6hv2q8815i825ka/328.jpg?raw=1", "https://www.dropbox.com/s/ewro25eurok8zyw/329.jpg?raw=1", "https://www.dropbox.com/s/pnfphpng1b5glse/330.jpg?raw=1", "https://www.dropbox.com/s/ud4bnpgom2hah9n/331.jpg?raw=1", "https://www.dropbox.com/s/8np0bnt1frnv237/332.jpg?raw=1", "https://www.dropbox.com/s/952oxbr6ji6p8vw/333.jpg?raw=1", "https://www.dropbox.com/s/lgtb4onlf1rkyqr/334.jpg?raw=1", "https://www.dropbox.com/s/56fi6t3lqcmpulh/335.jpg?raw=1", "https://www.dropbox.com/s/4cgdvgnvodmvfd5/336.jpg?raw=1", "https://www.dropbox.com/s/dvbz2n4c8m5ukc7/337.jpg?raw=1"]
+
+    var textField, image, correctLabel, incorrectLabel, skippedLabel;
+
+    var correctCount = 0;
+    var incorrectCount = 0;
+    var skippedCount = 0;
+
+    var SKIP = 0;
+    var CPC = 1;
+    var LIB = 2;
+    var NDP = 3;
+    var IND = 4;
+
+    var numMps = 338;
+    var seenMps = [];
+    var currentMp;
+    var correctParty;
+    var correctName;
+
+    function onload(){
+      textField = document.getElementById('mp_name');
+      image = document.getElementById('mp_image');
+
+      correctLabel = document.getElementById('score_correct');
+      incorrectLabel = document.getElementById('score_incorrect');
+      skippedLabel = document.getElementById('score_skipped');
+
+      generate();
+    }
+
+    function handleClick(){}
+
+    // Handle buttons: 
+    function cpcHandle(){
+      verify(CPC);
+    }
+
+    function libHandle(){
+      verify(LIB);
+    }
+
+    function ndpHandle(){
+      verify(NDP);
+    }
+
+    function indHandle(){
+      verify(IND);
+    }
+
+    function skipHandle(){
+      verify(SKIP);
+    }
+
+    // Verify if answer is correct, generate new
+    function verify(party){
+      if (party == SKIP){
+        skippedCount++;
+        skippedLabel.innerHTML = "Skipped: " + skippedCount;
+        textField.value = "";
+        
+        generate();
+      } else if (party == CPC) {
+        if (correctName == textField.value.toLowerCase().trim()){
+          if (correctParty == CPC){
+            correctCount++;
+            correctLabel.innerHTML = "Correct: " + correctCount;
+          } else {
+            incorrectCount++;
+            incorrectLabel.innerHTML = "Incorrect: " + incorrectCount;
+          }
+        } else {
+          incorrectCount++;
+          incorrectLabel.innerHTML = "Incorrect: " + incorrectCount;
+        }
+        
+        textField.value = "";
+        generate();
+      } else if (party == LIB){
+        if (correctName == textField.value.toLowerCase().trim()){
+          if (correctParty == LIB){
+            correctCount++;
+            correctLabel.innerHTML = "Correct: " + correctCount;
+          } else {
+            incorrectCount++;
+            incorrectLabel.innerHTML = "Incorrect: " + incorrectCount;
+          }
+        } else {
+          incorrectCount++;
+          incorrectLabel.innerHTML = "Incorrect: " + incorrectCount;
+        }
+        
+        textField.value = "";
+        generate();
+      } else if (party == NDP){
+        if (correctName == textField.value.toLowerCase().trim()){
+          if (correctParty == NDP){
+            correctCount++;
+            correctLabel.innerHTML = "Correct: " + correctCount;
+          } else {
+            incorrectCount++;
+            incorrectLabel.innerHTML = "Incorrect: " + incorrectCount;
+          }
+        } else {
+          incorrectCount++;
+          incorrectLabel.innerHTML = "Incorrect: " + incorrectCount;
+        }
+        
+        textField.value = "";
+        generate();
+      } else if (party == IND){
+        if (correctName == textField.value.toLowerCase().trim()){
+          if (correctParty == IND){
+            correctCount++;
+            correctLabel.innerHTML = "Correct: " + correctCount;
+          } else {
+            incorrectCount++;
+            incorrectLabel.innerHTML = "Incorrect: " + incorrectCount;
+          }
+        } else {
+          incorrectCount++;
+          incorrectLabel.innerHTML = "Incorrect: " + incorrectCount;
+        }
+        
+        textField.value = "";
+        generate();
+      }
+    }
+
+    // Generates new ID and calls load for info and resource paths
+    function generate(){
+      if (seenMps.length >= numMps){
+        gameover();
+      } else {
+        var temp;
+
+        do{
+          temp = Math.floor(Math.random() * numMps);
+        } while (seenMps.indexOf(temp) > -1 && seenMps.length < numMps);
+
+        seenMps.push(temp.toString());
+
+        load(temp);
+      }
+    }
+
+    // Loads info and img source from database
+    function load(num){
+      currentMp = num;
+      // Load image and set image url
+      // Get and set correctName
+      // Get and set correctParty
+      correctName = mpNames[currentMp].toLowerCase();
+      correctParty = mpParties[currentMp];
+      
+      if (correctParty == "CPC"){
+          correctParty = CPC;
+      } else if (correctParty == "LIB"){
+          correctParty = LIB;
+      } else if (correctParty == "NDP"){
+          correctParty = NDP;
+      } else if (correctParty == "IND"){
+          correctParty = IND;
+      }
+      
+      // To help with debugging
+      // console.log(correctName);
+      // console.log(correctParty);
+      
+      image.src = mpImages[currentMp];
+    }
+
+    // Called once all ID's have gone through
+    function gameover(){}
+  </script>
+</head>
+
+<body onload="onload()">
+  <div id = "wrapper">
+    <div id = "header">
+      <p>Parliament of Canada</p>
+    </div>
+    <div id = "top_bar">
+      <div id = "logo">
+        <img src = "https://www.ourcommons.ca/CommonElements/Images/ce-hoc-emblem-e.png" width = "150"/>
+      </div>
+      <div id = "back_to_menu_button" class = "menu_button">
+        <p>Home</p>
+      </div>
+      <div id = "multiple_choice_button" class = "menu_button">
+        <p>Play Multiple Choice</p>
+      </div>
+      <div id = "realistic_challenge_button" class = "menu_button">
+        <p>Play Reaslistic Challenge</p>
+      </div>
+      <div id = "about_button" class = "menu_button">
+        <p>About Us</p>
+      </div>
+      <div id = "contact_button" class = "menu_button">
+        <p>Contact Us</p>
+      </div>
+    </div>
+    
+    <div id = "game_screen">
+      <div id = "mp_image_container"> 
+        <img src = "" alt = "" id = "mp_image" width = "201" height = "325" />
+      </div>
+      <div id = "score_container">
+        <p id = "score_correct" class = "score_element">Correct: 0</p>
+        <p id = "score_incorrect" class = "score_element">Incorrect: 0</p>
+        <p id = "score_skipped" class = "score_element">Skipped: 0</p>
+      </div>
+      <form action="javascript:handleClick()">
+        <input type = "text" placeholder = "Mp Name" id = "mp_name" /><br/>
+        <input type = "submit" value = "CPC" id = "party_cpc" onclick="cpcHandle()" />
+        <input type = "submit" value = "LIB" id = "party_lib" onclick="libHandle()" />
+        <input type = "submit" value = "NDP" id = "party_ndp" onclick="ndpHandle()" />
+        <input type = "submit" value = "IND" id = "party_ind" onclick="indHandle()" />
+      </form>
+      <form action = "javascript:handleClick()">
+        <input type = "submit" value = "Skip" id = "skip_button" onclick = "skipHandle()" />
+      </form>
+    </div>
+    
+    <div id = "footer">
+      <div id = "copy_right"> 
+        <p>Created by Simon Cousineau</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
