@@ -28,8 +28,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Travis for CI
 gem 'travis'
 
-# Use Semantic UI for front-end
-gem 'semantic-ui-sass'
+# Use Bootstrap for front-end
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'sassc-rails', '>= 2.1.0'
+
+gem 'jquery-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
