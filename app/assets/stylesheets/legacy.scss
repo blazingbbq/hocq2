@@ -28,7 +28,7 @@ $footer-text-color: #BBBBBB;
 $footer-text-size: 14px;
 $footer-height: 30px;
 
-body{
+.legacy_quiz_body{
   background-color: $background-color;
   width: 100%;
   height: 100%;
@@ -38,13 +38,15 @@ body{
   -webkit-box-pack: center;
 }
 
-img {
+#mp_image {
   background: url(image-path("loading.gif")) no-repeat;
   background-position: center; 
 }
 
-form {
+.legacy_quiz_form {
   margin-bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 #wrapper{
@@ -96,8 +98,8 @@ form {
   width: $menu-bar-component-width;
 }
 
-.menu_button{
-  display: inline-block;
+.legacy_quiz_menu_button{
+  display: inline-block !important;
   float: left;
   margin: $menu-bar-margin;
   width: $menu-bar-component-width;
@@ -116,15 +118,15 @@ form {
   font-size: $menu-button-font-size;
   font-family: Tahoma, Arial, sans-serif;
 }
-.menu_button > p{
+.legacy_quiz_menu_button > div{
   position: relative;
   top: 50%;
-  -webkit-transform: translateY(-110%);
-  -ms-transform: translateY(-110%);
-  transform: translateY(-110%);
+  -webkit-transform: translateY(-20%);
+  -ms-transform: translateY(-20%);
+  transform: translateY(-20%);
 }
 
-.menu_button:hover{
+.legacy_quiz_menu_button:hover{
   background-color: $menu-button-color-hover;
   color: $menu-button-text-color-hover;
 }
@@ -148,17 +150,12 @@ form {
   text-align: center;
 }
 
-.score_element{
+.legacy_quiz_score_element{
   font-family: Helvetica, Arial, sans-serif;
   font-size: $score-font-size;
   color: $score-font-color;
   display: inline-block;
   margin: 20px 40px 10px 40px;
-}
-
-form{
-  width: 100%;
-  text-align: center;
 }
 
 ::-webkit-input-placeholder {
@@ -190,7 +187,7 @@ form{
   border: solid 1px $party-button-background-color;
 }
 
-input[type=submit]{
+.legacy_quiz_submit_input{
   border-radius: 5px;
   width: 15%;
   border: none;
