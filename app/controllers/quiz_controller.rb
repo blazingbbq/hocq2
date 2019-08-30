@@ -35,9 +35,13 @@ class QuizController < ApplicationController
   end
 
   def redir
-    reset_game_session  # FIXME: Remove game reset on redir from /verify
     redirect_to realistic_url
-  end 
+  end
+
+  def reset
+    session[:current_game] = nil
+    redirect_to realistic_url
+  end
 
   private
 
@@ -56,10 +60,6 @@ class QuizController < ApplicationController
 
   def gameover
     # TODO: Implement gameover callback (persist result, redirect to result page)
-    reset_game_session
-  end
-
-  def reset_game_session
-    session[:current_game] = nil
+    reset
   end
 end

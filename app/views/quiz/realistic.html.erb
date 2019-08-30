@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default">
-        <form action="/verify" method="post" autocomplete="off">
+        <form action="/realistic" method="post" autocomplete="off">
           <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
           <div class="panel-body">
@@ -38,6 +38,7 @@
           </div>
           <div class="col align-self-end">
             <div class="panel-footer">
+              <a class="btn btn-default" href="<%= reset_url %>" role="button">Restart</a>
               <button name="skip" class="btn btn-default" type="submit">Skip</button>
               <%# <button class="btn btn-default btn-success" type="submit">Submit</button> %>
             </div>

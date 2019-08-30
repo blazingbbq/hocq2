@@ -6,8 +6,8 @@ class QuizControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get verify" do
-    get verify_url
+  test "should get reset" do
+    get reset_url
     assert_redirected_to realistic_url
   end
 
