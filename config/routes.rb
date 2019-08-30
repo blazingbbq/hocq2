@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   post 'verify', to: 'quiz#verify'
   get 'verify', to: 'quiz#redir'
 
-  root 'quiz#realistic'
+  root 'home#index'
 end
