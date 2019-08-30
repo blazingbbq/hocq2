@@ -9,12 +9,12 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-xs-12">
-                <div class="thumbnail col-md-4 col-xs-12">
+                <div class="thumbnail col-sm-4 col-xs-12">
                   <div class="quiz-image-container">
                     <%= image_tag(@current_game["mp_id"] ? "mps/#{@current_game["mp_id"]}.jpeg" : "", class: "quiz-image") %>
                   </div>
                 </div>
-                <div class="col-md-8 col-xs-12">
+                <div class="col-sm-8 col-xs-12">
                   <h3>Name that MP!</h3>
                   <div class="form-group">
                     <label for="mpName">MP Name</label>
@@ -26,10 +26,10 @@
                   </div>
                   <div class="row">
                     <div class="col-xs-12">
-                      <button name="answer[party]" value="cpc" class="btn btn-default btn-primary" type="submit">CPC</button>
-                      <button name="answer[party]" value="lib" class="btn btn-default btn-danger" type="submit">LIB</button>
-                      <button name="answer[party]" value="ndp" class="btn btn-default btn-warning" type="submit">NDP</button>
-                      <button name="answer[party]" value="ind" class="btn btn-default btn-info" type="submit">IND</button>
+                      <button name="answer[party]" value="CPC" class="btn btn-default btn-primary" type="submit">CPC</button>
+                      <button name="answer[party]" value="LIB" class="btn btn-default btn-danger" type="submit">LIB</button>
+                      <button name="answer[party]" value="NDP" class="btn btn-default btn-warning" type="submit">NDP</button>
+                      <button name="answer[party]" value="IND" class="btn btn-default btn-info" type="submit">IND</button>
                     </div>
                   </div>
                 </div>
@@ -46,8 +46,14 @@
       </div>
       <% if @current_game %>
         <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @current_game["correct"] + @current_game["skipped"] + @current_game["incorrect"] %>" aria-valuemin="0" aria-valuemax="<%= @current_game["total"] %>" style="width: <%= 100.0 * (@current_game["correct"] + @current_game["skipped"] + @current_game["incorrect"]) / @current_game["total"] %>%;">
-            <span class="sr-only"><%= 100 * (@current_game["correct"] + @current_game["skipped"] + @current_game["incorrect"]) / @current_game["total"] %>% Complete</span>
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= @current_game["correct"] %>" aria-valuemin="0" aria-valuemax="<%= @current_game["total"] %>" style="width: <%= 100.0 * @current_game["correct"].length / @current_game["total"] %>%;">
+            <span class="sr-only"><%= 100 * @current_game["correct"].length / @current_game["total"] %>% Correct</span>
+          </div>
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<%= @current_game["incorrect"] %>" aria-valuemin="0" aria-valuemax="<%= @current_game["total"] %>" style="width: <%= 100.0 * @current_game["incorrect"].length / @current_game["total"] %>%;">
+            <span class="sr-only"><%= 100 * @current_game["incorrect"].length / @current_game["total"] %>% Incorrect</span>
+          </div>
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= @current_game["skipped"] %>" aria-valuemin="0" aria-valuemax="<%= @current_game["total"] %>" style="width: <%= 100.0 * @current_game["skipped"].length / @current_game["total"] %>%;">
+            <span class="sr-only"><%= 100 * @current_game["skipped"].length / @current_game["total"] %>% Skipped</span>
           </div>
         </div>
       <% end %>
