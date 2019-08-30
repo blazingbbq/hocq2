@@ -3,48 +3,52 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="thumbnail col-md-4 col-xs-12">
-                <%= image_tag('loading.gif') %>
-              </div>
-              <div class="col-md-8 col-xs-12">
-                <h3>Name that MP!</h3>
-                <div class="form-group">
-                  <label for="mpName">MP Name</label>
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <input type="" class="form-control" id="mpName" placeholder="Name">
+        <form action="/verify" method="post" autocomplete="off">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="thumbnail col-md-4 col-xs-12">
+                  <%= image_tag('loading.gif') %>
+                </div>
+                <div class="col-md-8 col-xs-12">
+                  <h3>Name that MP!</h3>
+                  <div class="form-group">
+                    <label for="mpName">MP Name</label>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <input name="answer[name]" type="text" class="form-control" id="mpName" placeholder="Name">
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <div class="btn-group">
-                      <button class="btn btn-default btn-primary" type="submit">CPC</button>
-                      <button class="btn btn-default btn-danger" type="submit">LIB</button>
-                      <button class="btn btn-default btn-warning" type="submit">NDP</button>
-                      <button class="btn btn-default btn-info" type="submit">IND</button>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <button name="answer[party]" value="cpc" class="btn btn-default btn-primary" type="submit">CPC</button>
+                      <button name="answer[party]" value="lib" class="btn btn-default btn-danger" type="submit">LIB</button>
+                      <button name="answer[party]" value="ndp" class="btn btn-default btn-warning" type="submit">NDP</button>
+                      <button name="answer[party]" value="ind" class="btn btn-default btn-info" type="submit">IND</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col align-self-end">
-        <div class="panel-footer">
-          <button class="btn btn-default" type="submit">Skip</button>
-          <%# <button class="btn btn-default btn-success" type="submit">Submit</button> %>
-        </div>
-        </div>
+          <div class="col align-self-end">
+            <div class="panel-footer">
+              <button name="skip" class="btn btn-default" type="submit">Skip</button>
+              <%# <button class="btn btn-default btn-success" type="submit">Submit</button> %>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-          <span class="sr-only">60% Complete</span>
+      <% if @current_game %>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @current_game["correct"] + @current_game["skipped"] + @current_game["incorrect"] %>" aria-valuemin="0" aria-valuemax="<%= @current_game["total"] %>" style="width: <%= 100.0 * (@current_game["correct"] + @current_game["skipped"] + @current_game["incorrect"]) / @current_game["total"] %>%;">
+            <span class="sr-only"><%= 100 * (@current_game["correct"] + @current_game["skipped"] + @current_game["incorrect"]) / @current_game["total"] %>% Complete</span>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
