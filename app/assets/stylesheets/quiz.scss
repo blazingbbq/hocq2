@@ -5,3 +5,14 @@
 .right {
   margin-left: auto;
 }
+
+.quiz-image {
+  width: 100%;
+}
+
+.quiz-image-container {
+  height: 325px;
+  overflow: hidden;
+  background: url(image-path("loading.gif")) no-repeat;
+  background-position: center;
+}
