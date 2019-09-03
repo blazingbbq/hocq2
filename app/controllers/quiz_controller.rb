@@ -25,6 +25,7 @@ class QuizController < ApplicationController
     )
       @current_game["correct"] << @current_game["mp_id"]
     else
+      # TODO: Persist mistakes
       @current_game["incorrect"] << @current_game["mp_id"]
     end
 
@@ -47,7 +48,9 @@ class QuizController < ApplicationController
 
   def correct_answer?(mp_id:, answer:)
     Rails.logger.info("ANSWER: #{answer}, MP: #{mp_id}")
-    false
+    # MP records start at 1 :(
+    mp = Mp.find(mp_id + 1)
+    mp.name.casecmp?(answer["name"].strip) && mp.party == answer["party"]
   end
 
   def generate_new
