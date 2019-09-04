@@ -189,58 +189,56 @@
   </script>
 </head>
 
-<body onload="onload()">
-  <div class="legacy_quiz_body">
-    <div id="wrapper">
-      <div id="header">
-        <p>Parliament of Canada</p>
+<body onload="onload()" class="legacy_quiz_body">
+  <div id="wrapper">
+    <div id="header">
+      <p>Parliament of Canada</p>
+    </div>
+    <div id="top_bar">
+      <div id="logo">
+        <img src="https://www.ourcommons.ca/CommonElements/Images/ce-hoc-emblem-e.png" width="150"/>
       </div>
-      <div id="top_bar">
-        <div id="logo">
-          <img src="https://www.ourcommons.ca/CommonElements/Images/ce-hoc-emblem-e.png" width="150"/>
-        </div>
-        <div id="back_to_menu_button" class="legacy_quiz_menu_button">
-          <div>Home</div>
-        </div>
-        <div id="multiple_choice_button" class="legacy_quiz_menu_button">
-          <div>Play Multiple Choice</div>
-        </div>
-        <div id="realistic_challenge_button" class="legacy_quiz_menu_button">
-          <div>Play Reaslistic Challenge</div>
-        </div>
-        <div id="about_button" class="legacy_quiz_menu_button">
-          <div>About Us</div>
-        </div>
-        <div id="contact_button" class="legacy_quiz_menu_button">
-          <div>Contact Us</div>
-        </div>
+      <a id="back_to_menu_button" class="legacy_quiz_menu_button" href=<%= home_url %>>
+        <div>Home</div>
+      </a>
+      <a id="multiple_choice_button" class="legacy_quiz_menu_button">
+        <div>Play Multiple Choice</div>
+      </a>
+      <a id="realistic_challenge_button" class="legacy_quiz_menu_button">
+        <div>Play Reaslistic Challenge</div>
+      </a>
+      <a id="about_button" class="legacy_quiz_menu_button">
+        <div>About Us</div>
+      </a>
+      <a id="contact_button" class="legacy_quiz_menu_button">
+        <div>Contact Us</div>
+      </a>
+    </div>
+    
+    <div id="game_screen">
+      <div id="mp_image_container"> 
+        <img src="" alt="" id="mp_image" width="201" height="325" />
       </div>
-      
-      <div id="game_screen">
-        <div id="mp_image_container"> 
-          <img src="" alt="" id="mp_image" width="201" height="325" />
-        </div>
-        <div id="score_container">
-          <p id="score_correct" class="legacy_quiz_score_element">Correct: 0</p>
-          <p id="score_incorrect" class="legacy_quiz_score_element">Incorrect: 0</p>
-          <p id="score_skipped" class="legacy_quiz_score_element">Skipped: 0</p>
-        </div>
-        <form action="javascript:handleClick()" autocomplete="off" class="legacy_quiz_form">
-          <input type="text" placeholder="Mp Name" id="mp_name" /><br/>
-          <input class="legacy_quiz_submit_input" type="submit" value="CPC" id="party_cpc" onclick="cpcHandle()" />
-          <input class="legacy_quiz_submit_input" type="submit" value="LIB" id="party_lib" onclick="libHandle()" />
-          <input class="legacy_quiz_submit_input" type="submit" value="NDP" id="party_ndp" onclick="ndpHandle()" />
-          <input class="legacy_quiz_submit_input" type="submit" value="IND" id="party_ind" onclick="indHandle()" />
-        </form>
-        <form action="javascript:handleClick()" class="legacy_quiz_form">
-          <input class="legacy_quiz_submit_input" type="submit" value="Skip" id="skip_button" onclick="skipHandle()" />
-        </form>
+      <div id="score_container">
+        <p id="score_correct" class="legacy_quiz_score_element">Correct: 0</p>
+        <p id="score_incorrect" class="legacy_quiz_score_element">Incorrect: 0</p>
+        <p id="score_skipped" class="legacy_quiz_score_element">Skipped: 0</p>
       </div>
-      
-      <div id="footer">
-        <div id="copy_right"> 
-          <p>Created by Simon Cousineau</p>
-        </div>
+      <form action="javascript:handleClick()" autocomplete="off" class="legacy_quiz_form">
+        <input type="text" placeholder="Mp Name" id="mp_name" /><br/>
+        <input class="legacy_quiz_submit_input" type="submit" value="CPC" id="party_cpc" onclick="cpcHandle()" />
+        <input class="legacy_quiz_submit_input" type="submit" value="LIB" id="party_lib" onclick="libHandle()" />
+        <input class="legacy_quiz_submit_input" type="submit" value="NDP" id="party_ndp" onclick="ndpHandle()" />
+        <input class="legacy_quiz_submit_input" type="submit" value="IND" id="party_ind" onclick="indHandle()" />
+      </form>
+      <form action="javascript:handleClick()" class="legacy_quiz_form">
+        <input class="legacy_quiz_submit_input" type="submit" value="Skip" id="skip_button" onclick="skipHandle()" />
+      </form>
+    </div>
+    
+    <div id="footer">
+      <div id="copy_right"> 
+        <p>Created by Simon Cousineau</p>
       </div>
     </div>
   </div>
