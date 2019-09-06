@@ -1,5 +1,5 @@
 class QuizController < ApplicationController
-  NUMBER_OF_MPS = 338  # TODO: Remove magic number...
+  NUMBER_OF_MPS ||= Mp.all.count
 
   def realistic
     @current_game = session[:current_game]
@@ -30,6 +30,8 @@ class QuizController < ApplicationController
     end
 
     @current_game["mp_id"] = generate_new
+    return unless @current_game["mp_id"]
+
     session[:current_game] = @current_game
 
     render :realistic
@@ -64,5 +66,6 @@ class QuizController < ApplicationController
   def gameover
     # TODO: Implement gameover callback (persist result, redirect to result page)
     reset
+    nil
   end
 end
