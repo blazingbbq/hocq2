@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  
   get 'legacy', to: 'legacy#index'
   get 'home', to: 'home#index'
 
