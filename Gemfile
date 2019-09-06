@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Travis for CI
 gem 'travis'
 
+# Use Devise for user authentication
+gem 'devise'
+
 # Use Bootstrap for front-end
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
