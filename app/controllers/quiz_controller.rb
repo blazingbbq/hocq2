@@ -1,4 +1,6 @@
 class QuizController < ApplicationController
+  before_action :authenticate_user!
+
   NUMBER_OF_MPS ||= Mp.all.count
 
   Answer = Struct.new(:type, :mp_id, :answer)
@@ -35,15 +37,10 @@ class QuizController < ApplicationController
     end
 
     @current_game["mp_id"] = generate_new
+    session[:current_game] = @current_game
     return unless @current_game["mp_id"]
 
-    session[:current_game] = @current_game
-
     render :realistic
-  end
-
-  def redir
-    redirect_to realistic_url
   end
 
   def reset

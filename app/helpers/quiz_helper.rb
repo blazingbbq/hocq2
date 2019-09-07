@@ -5,7 +5,7 @@ module QuizHelper
       "progress-bar-info"
     when QuizController::ANSWER_TYPES[:correct]
       "progress-bar-success"
-    else
+    when QuizController::ANSWER_TYPES[:incorrect]
       "progress-bar-danger"
     end
   end

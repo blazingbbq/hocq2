@@ -4,7 +4,7 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-test_user: {
+test: {
   email: "test_user@gmail.com",
   encrypted_password: "test.password",
   created_at: "2019-09-06 22:48:21",
