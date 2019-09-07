@@ -4,11 +4,10 @@ class Mistake < ApplicationRecord
     incorrect: "incorrect",
   }
 
-  validates :answer_name, presence: true
-  validates :answer_party, inclusion: { in: Mp::PARTIES.values }
-  validates :type, inclusion: { in: TYPES.values }
+  validates :mistake_type, inclusion: { in: TYPES.values }
+  validates :answer_party, inclusion: { in: Mp::PARTIES.values }, unless: Proc.new { |m| m.mistake_type == TYPES[:skipped] }
 
-  has_one :mp
+  belongs_to :mp
   belongs_to :game
   belongs_to :user
 

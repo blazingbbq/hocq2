@@ -3,42 +3,30 @@ class QuizController < ApplicationController
 
   NUMBER_OF_MPS ||= Mp.all.count
 
-  Answer = Struct.new(:type, :mp_id, :answer)
-  ANSWER_TYPES = {
-    skipped: "skipped",
-    correct: "correct",
-    incorrect: "incorrect",
-  }
-
   def realistic
-    @current_game = session[:current_game]
-    @current_game ||= {
-      answers: [],
-      total: NUMBER_OF_MPS,
-      mp_id: generate_new,
-    }.as_json
-    session[:current_game] = @current_game
+    @current_game = current_user.active_game || Game.create(active?: true, user: current_user)
   end
 
   def verify
-    @current_game = session[:current_game]
-    redirect_to home_url unless @current_game
+    @current_game = current_user.active_game
 
-    mp_id = @current_game["mp_id"]
+    # TODO: Handle no active_game... ??   # redirect_to home_url unless @current_game
+
+    mp_id = @current_game.current_mp
     answer = params.fetch(:answer)
 
     if params[:skip]
-      @current_game["answers"] << Answer.new(ANSWER_TYPES[:skipped], mp_id, answer)
-    elsif correct_answer?(mp_id: mp_id, answer: answer)
-      @current_game["answers"] << Answer.new(ANSWER_TYPES[:correct], mp_id, answer)
-    else
-      # TODO: Persist mistakes
-      @current_game["answers"] << Answer.new(ANSWER_TYPES[:incorrect], mp_id, answer)
+      persist_mistake(answer, Mistake::TYPES[:skipped])
+    elsif !correct_answer?(mp_id: mp_id, answer: answer)
+      persist_mistake(answer, Mistake::TYPES[:incorrect])
     end
 
-    @current_game["mp_id"] = generate_new
-    session[:current_game] = @current_game
-    return unless @current_game["mp_id"]
+    # TODO: Handle gameover if all have been seen
+    @current_game.generate_new    
+
+    # @current_game["mp_id"] = generate_new
+    # session[:current_game] = @current_game
+    # return unless @current_game["mp_id"]
 
     render :realistic
   end
@@ -51,17 +39,20 @@ class QuizController < ApplicationController
   private
 
   def correct_answer?(mp_id:, answer:)
-    # MP records start at 1 :(
-    mp = Mp.find(mp_id + 1)
+    mp = Mp.find(mp_id + 1) # MP records start at 1 :(
     mp.name.casecmp?(answer["name"].strip) && mp.party == answer["party"]
   end
 
-  def generate_new
-    pool = [*0...NUMBER_OF_MPS] - (session[:current_game] ? session[:current_game]["answers"].map { |ans| ans["mp_id"] } : [])
-
-    return gameover if pool.empty?
-
-    pool.sample
+  def persist_mistake(answer, mistake_type)
+    Rails.logger.info("MISTAKE: #{answer}")
+    Mistake.create!(
+      mistake_type: mistake_type,
+      answer_name: answer["name"],
+      answer_party: answer["party"],
+      game: @current_game,
+      user: current_user,
+      mp_id: @current_game.current_mp + 1,
+    )
   end
 
   def gameover

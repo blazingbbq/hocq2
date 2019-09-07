@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_many :games
   has_many :mistakes
+
+  def active_game
+    self.games.find(&:active?)
+  end
 end
