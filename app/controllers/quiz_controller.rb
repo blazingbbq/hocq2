@@ -10,7 +10,7 @@ class QuizController < ApplicationController
   def verify
     @current_game = current_user.active_game
 
-    # TODO: Handle no active_game... ??   # redirect_to home_url unless @current_game
+    return redirect_to realistic_url unless @current_game
 
     mp_id = @current_game.current_mp
     answer = params.fetch(:answer)
@@ -21,18 +21,14 @@ class QuizController < ApplicationController
       persist_mistake(answer, Mistake::TYPES[:incorrect])
     end
 
-    # TODO: Handle gameover if all have been seen
-    @current_game.generate_new    
-
-    # @current_game["mp_id"] = generate_new
-    # session[:current_game] = @current_game
-    # return unless @current_game["mp_id"]
+    return gameover unless @current_game.generate_new    
 
     render :realistic
   end
 
   def reset
-    session[:current_game] = nil
+    current_game = current_user.active_game
+    current_game.update(active?: false, current_mp: nil) if current_game
     redirect_to realistic_url
   end
 
@@ -44,8 +40,7 @@ class QuizController < ApplicationController
   end
 
   def persist_mistake(answer, mistake_type)
-    Rails.logger.info("MISTAKE: #{answer}")
-    Mistake.create!(
+    Mistake.create(
       mistake_type: mistake_type,
       answer_name: answer["name"],
       answer_party: answer["party"],
@@ -56,8 +51,8 @@ class QuizController < ApplicationController
   end
 
   def gameover
-    # TODO: Implement gameover callback (persist result, redirect to result page)
-    reset
-    nil
+    current_game = current_user.active_game
+    current_game.update(active?: false, current_mp: nil)
+    redirect_to home_url  # TODO: Redirect to result page
   end
 end

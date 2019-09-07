@@ -3,7 +3,7 @@ class Game < ApplicationRecord
 
   after_create :generate_new
   
-  validates :active?, presence: true
+  validates :active?, inclusion: { in: [true, false] }
 
   belongs_to :user
   has_many :mistakes
@@ -13,6 +13,6 @@ class Game < ApplicationRecord
 
     return false unless self.seen.count < NUMBER_OF_MPS
 
-    self.update(current_mp: ([*0...NUMBER_OF_MPS] - self.seen).sample)
+    self.update(current_mp: ([*0...NUMBER_OF_MPS] - self.seen.map(&:to_i)).sample)
   end
 end
