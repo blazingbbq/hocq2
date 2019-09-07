@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+skipped: {
+  type: "skipped",
+  answer_name: "",
+  answer_party: "CPC",
+}
+
+incorrect: {
+  type: "incorrect",
+  answer_name: "foo",
+  answer_party: "CPC",
+}
