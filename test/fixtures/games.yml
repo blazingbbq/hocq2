@@ -1,10 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-active: {
-  "active?": true,
-}
+active:
+  id: 1
+  'active?': true
+  current_mp: 1
+  user_id: 1
 
-finished: {
-  "active?": false,
-  seen: [1, 2, 3],
-}
+finished:
+  id: 2
+  'active?': false
+  seen: [1]
+  user_id: 1

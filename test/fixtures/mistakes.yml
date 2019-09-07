@@ -1,13 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 skipped: {
-  type: "skipped",
+  id: 1,
+  mistake_type: "skipped",
   answer_name: "",
-  answer_party: "CPC",
+  answer_party: "",
+  mp_id: 1,
+  game_id: 1,
+  user_id: 1,
 }
 
 incorrect: {
-  type: "incorrect",
+  id: 2,
+  mistake_type: "incorrect",
   answer_name: "foo",
   answer_party: "CPC",
+  mp_id: 1,
+  game_id: 1,
+  user_id: 1,
 }

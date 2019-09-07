@@ -4,7 +4,7 @@ class QuizController < ApplicationController
   NUMBER_OF_MPS ||= Mp.all.count
 
   def realistic
-    @current_game = current_user.active_game || Game.create(active?: true, user: current_user)
+    @current_game = current_user.active_game || Game.create(user: current_user)
   end
 
   def verify
