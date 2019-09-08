@@ -1,8 +1,6 @@
 class QuizController < ApplicationController
   before_action :authenticate_user!
 
-  NUMBER_OF_MPS ||= Mp.all.count
-
   def realistic
     @current_game = current_user.active_game || Game.create(user: current_user)
   end

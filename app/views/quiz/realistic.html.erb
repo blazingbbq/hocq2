@@ -47,10 +47,8 @@
         </form>
       </div>
       <div class="progress">
-        <% if false && @current_game %>
-          <% @current_game["answers"].map do |ans| %>
-            <div class="progress-bar <%= progressbar_type(ans) %>" role="progressbar" style="width: <%= 100.0 * 1 / @current_game["total"] %>%;"></div>
-          <% end %>
+        <% progressbars(@current_game).each do |progressbar| %>
+          <div class="progress-bar <%= progressbar.type %>" role="progressbar" style="width: <%= 100.0 * progressbar.width / number_of_mps %>%;"></div>
         <% end %>
       </div>
     </div>
