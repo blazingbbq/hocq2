@@ -35,7 +35,7 @@ class QuizController < ApplicationController
   private
 
   def correct_answer?(mp_id:, answer:)
-    mp = Mp.find(mp_id + 1) # MP records start at 1 :(
+    mp = Mp.find(mp_id)
     mp.name.casecmp?(answer["name"].strip) && mp.party == answer["party"]
   end
 
@@ -46,7 +46,7 @@ class QuizController < ApplicationController
       answer_party: answer["party"],
       game: @current_game,
       user: current_user,
-      mp_id: @current_game.current_mp + 1,
+      mp_id: @current_game.current_mp,
     )
   end
 

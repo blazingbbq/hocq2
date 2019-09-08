@@ -20,4 +20,10 @@ class GameTest < ActiveSupport::TestCase
 
     assert_equal new_game.active?, true
   end
+
+  test "#generate_new should return false when all mps have been seen" do
+    mp_count = Mp.all.count
+
+    assert_equal false, Game.create(seen: [*1...mp_count], current_mp: mp_count, user: users(:test)).generate_new
+  end
 end

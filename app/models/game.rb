@@ -13,6 +13,6 @@ class Game < ApplicationRecord
 
     return false unless self.seen.count < number_of_mps
 
-    self.update(current_mp: ([*0...number_of_mps] - self.seen.map(&:to_i)).sample)
+    self.update(current_mp: ([*1..number_of_mps] - self.seen.map(&:to_i)).sample)
   end
 end

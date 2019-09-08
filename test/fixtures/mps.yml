@@ -1,6 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 trudeau:
-  id: 1,
+  id: 1
   name: Trudeau
+  party: LIB
+
+regan:
+  id: 2
+  name: Regan
   party: LIB
